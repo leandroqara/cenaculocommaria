@@ -36,6 +36,26 @@
 	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 	})(window,document,'script','dataLayer','GTM-PK7TG7DP');</script>
+	
+	<script type="text/js">
+		$(document).ready(function () {
+			// Function to fetch the /live page with a unique timestamp
+			function fetchLivePage() {
+				const url = '/live';
+				const noCacheUrl = `${url}?_=${new Date().getTime()}`;
+
+				// Make the request
+				$.get(noCacheUrl, function (data) {
+					console.error('page reloaded');
+				}).fail(function () {
+					console.error('Failed to load the /live page.');
+				});
+			}
+
+			// Call the function initially
+			fetchLivePage();
+		});
+	</script>
    <!-- End Google Tag Manager -->
 </head>
 
