@@ -29,33 +29,36 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha384-wnU6UE2VRIHQe3z9U/ixgt8cZZtb2BYc2BZwO1whxJoPr0yQU6Wr2SmPMc2kY4y5" crossorigin="anonymous"></script>
 
-    <!-- Google Tag Manager -->
-	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 	})(window,document,'script','dataLayer','GTM-PK7TG7DP');</script>
 	
-	<script type="text/javascript">
-		$(document).ready(function () {
-			// Function to fetch the /live page with a unique timestamp
-			function fetchLivePage() {
-				const url = '/live';
-				const noCacheUrl = `${url}?_=${new Date().getTime()}`;
+  <script type="text/javascript">
+	$(document).ready(function () {
+		// Function to fetch the /live page with a unique timestamp
+		function fetchLivePage() {
+			const url = '/live';
+			const noCacheUrl = `${url}?_=${new Date().getTime()}`;
 
-				// Make the request
-				$.get(noCacheUrl, function (data) {
-					console.error('page reloaded');
-				}).fail(function () {
-					console.error('Failed to load the /live page.');
-				});
-			}
+			// Make the request
+			$.get(noCacheUrl, function (data) {
+				console.error('page reloaded');
+			}).fail(function () {
+				console.error('Failed to load the /live page.');
+			});
+		}
 
-			// Call the function initially
-			fetchLivePage();
-		});
-	</script>
+		// Call the function initially
+		fetchLivePage();
+	});
+  </script>
    <!-- End Google Tag Manager -->
 </head>
 
