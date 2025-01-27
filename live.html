@@ -42,20 +42,40 @@
 	
   <script type="text/javascript">
 	$(document).ready(function () {
-		function updateUrlWithNoCacheParam() {
-            let currentUrl = window.location.href;
+		var urlParams = new URLSearchParams(window.location.search);
+        var cacheParam = urlParams.get("_");
+		var currentUrl = window.location.href;	
+		
+		function updateOrReloadUrl() {
+            urlParams = new URLSearchParams(window.location.search);
+            cacheParam = urlParams.get("_");
 
-            if (!currentUrl.includes("_=")) {
-                const noCacheUrl = currentUrl.includes("?")
-                    ? `${currentUrl}&_=${new Date().getTime()}`
-                    : `${currentUrl}?_=${new Date().getTime()}`;
+            currentTimestamp = new Date().getTime();
 
-                window.history.replaceState(null, "", noCacheUrl);
+            if (cacheParam) {
+				console.log("contains cache");
+                const cacheTimestamp = parseInt(cacheParam, 10);
+                const fiveMinutes = 5 * 60 * 1000; 
+
+                if (isNaN(cacheTimestamp) || currentTimestamp - cacheTimestamp > fiveMinutes) {
+                    console.log("reloading");
+					reloadUrl();
+                }
+            } else {
+				console.log("does not contain cache");
+                reloadUrl();
             }
         }
+		
+		function reloadUrl() {
+			
+			const baseUrl = currentUrl.split("?")[0]; 
+		
+			window.location.href = `${baseUrl}?_=${currentTimestamp}`;
+		}
 
-        updateUrlWithNoCacheParam();
-	});
+        updateOrReloadUrl();
+    });
   </script>
    <!-- End Google Tag Manager -->
 </head>
